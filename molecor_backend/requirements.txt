@@ -5,3 +5,4 @@ corsheaders==4.6.0
 django-filters
 gunicorn
 whitenoise
+psycopg2-binary
