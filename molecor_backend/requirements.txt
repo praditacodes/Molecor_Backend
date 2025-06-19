@@ -1,9 +1,0 @@
-dj_database_url==2.1.0
-Django==5.2.3
-djangorestframework==3.16.0
-corsheaders==4.6.0
-django-filters
-gunicorn
-whitenoise
-psycopg2-binary
-
