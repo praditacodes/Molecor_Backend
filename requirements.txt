@@ -1,3 +1,4 @@
+--only-binary :all:
 dj-database-url==3.0.0
 Django==5.2.3
 djangorestframework==3.16.0
