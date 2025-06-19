@@ -6,3 +6,4 @@ django-filters
 gunicorn
 whitenoise
 psycopg2-binary
+
