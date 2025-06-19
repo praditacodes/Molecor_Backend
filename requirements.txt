@@ -1,9 +1,9 @@
-dj_database_url==2.1.0
+dj-database-url==3.0.0
 Django==5.2.3
 djangorestframework==3.16.0
-django-cors-headers==4.6.0
-django-filters
-gunicorn
-whitenoise
-psycopg2-binary
+django-cors-headers==4.3.1
+django-filter==24.2
+gunicorn==22.0.0
+whitenoise==6.6.0
+psycopg2-binary==2.9.9
 
