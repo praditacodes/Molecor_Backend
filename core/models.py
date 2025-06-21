@@ -81,12 +81,21 @@ class Certificate(models.Model):
 #         return self.title
 
 class News(models.Model):
+    CATEGORY_CHOICES = [
+        ('NEWS', 'News'),
+        ('EVENT', 'Event'),
+    ]
+
     title = models.CharField(max_length=200)
     slug = models.SlugField(null=True, blank=True)
-
-    summary = models.TextField()
+    category = models.CharField(max_length=10, choices=CATEGORY_CHOICES, default='NEWS')
+    summary = models.TextField(help_text="A short summary or introduction for the news/event.")
+    content = models.TextField(blank=True, help_text="The full content of the article. Optional.")
     image = CloudinaryField('image', folder='news')
     published_date = models.DateField()
+    event_date_start = models.DateTimeField(null=True, blank=True, help_text="Start date and time of the event.")
+    event_date_end = models.DateTimeField(null=True, blank=True, help_text="End date and time of the event.")
+    location = models.CharField(max_length=200, blank=True, help_text="Location of the event, e.g., 'Düsseldorf, Germany'.")
 
     def save(self, *args, **kwargs):
         if not self.slug:
