@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
+from cloudinary_storage.storage import MediaCloudinaryStorage
+from cloudinary.models import CloudinaryField
 
 class CaseStudy(models.Model):
     CATEGORY_CHOICES = [
@@ -44,7 +46,7 @@ class CaseStudy(models.Model):
 
 class CaseStudyImage(models.Model):
     case_study = models.ForeignKey(CaseStudy, related_name='images', on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='case_studies/')
+    image = CloudinaryField('image', folder='case_studies')
     caption = models.CharField(max_length=200, blank=True)
     is_featured = models.BooleanField(default=False)
 
@@ -53,7 +55,7 @@ class CaseStudyImage(models.Model):
 
 class Certificate(models.Model):
     title = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='certificates/')
+    image = CloudinaryField('image', folder='certificates')
     issued_date = models.DateField()
     description = models.TextField(blank=True)
 
@@ -83,7 +85,7 @@ class News(models.Model):
     slug = models.SlugField(null=True, blank=True)
 
     summary = models.TextField()
-    image = models.ImageField(upload_to='news/')
+    image = CloudinaryField('image', folder='news')
     published_date = models.DateField()
 
     def save(self, *args, **kwargs):
