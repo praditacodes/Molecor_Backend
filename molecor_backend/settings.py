@@ -24,8 +24,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-pc8g_=rzs!a)oj5^(-b$-xl^a3x_%s^37un9%^arhr8i_w##n3')
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+
+
+# DEBUG = True
 
 ALLOWED_HOSTS = ['*']  # Update this with your actual domain in production
 
@@ -48,6 +51,7 @@ INSTALLED_APPS = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "https://molecor-frontend-gamma.vercel.app",
     # Add your frontend URL here for production, e.g. "https://your-frontend.vercel.app"
 ]
 
