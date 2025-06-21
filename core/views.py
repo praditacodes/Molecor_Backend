@@ -6,6 +6,9 @@ from django_filters.rest_framework import DjangoFilterBackend  # This will now w
 from rest_framework import viewsets
 from .models import CaseStudy
 from .serializers import CaseStudySerializer
+from django.http import JsonResponse
+from django.conf import settings
+import os
 
 class CaseStudyViewSet(viewsets.ModelViewSet):
     queryset = CaseStudy.objects.prefetch_related('images').all()
@@ -33,4 +36,12 @@ class NewsDetail(generics.RetrieveAPIView):  # Add this
     queryset = News.objects.all()
     serializer_class = NewsSerializer
     lookup_field = 'id'
+
+def debug_cloudinary(request):
+    return JsonResponse({
+        "DEFAULT_FILE_STORAGE": settings.DEFAULT_FILE_STORAGE,
+        "CLOUDINARY_CLOUD_NAME": os.environ.get('CLOUDINARY_CLOUD_NAME'),
+        "CLOUDINARY_API_KEY": os.environ.get('CLOUDINARY_API_KEY'),
+        "CLOUDINARY_API_SECRET": os.environ.get('CLOUDINARY_API_SECRET'),
+    })
 

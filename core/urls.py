@@ -4,7 +4,8 @@ from .views import (
     NewsList, 
     NewsDetail, 
     CaseStudyViewSet,  # Remove CaseStudyList as it's handled by the ViewSet
-    CertificateList
+    CertificateList,
+    debug_cloudinary
 )
 
 # Initialize router
@@ -20,6 +21,9 @@ urlpatterns = [
 
     # Certificates Endpoint
     path('certificates/', CertificateList.as_view(), name='certificate-list'),
+
+    # Debug Endpoint
+    path('debug-cloudinary/', debug_cloudinary),
 ]
 
 # Include the router URLs
