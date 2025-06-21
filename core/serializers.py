@@ -13,9 +13,8 @@ class CaseStudyImageSerializer(serializers.ModelSerializer):
         fields = ['id', 'image_url', 'caption', 'is_featured']
 
     def get_image_url(self, obj):
-        request = self.context.get('request')
         if obj.image and hasattr(obj.image, 'url'):
-            return request.build_absolute_uri(obj.image.url)
+            return obj.image.url
         return None
 
 class CaseStudySerializer(serializers.ModelSerializer):
@@ -41,9 +40,21 @@ class CertificateSerializer(serializers.ModelSerializer):
         model = Certificate
         fields = '__all__'
 
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        if hasattr(instance, 'image') and instance.image and hasattr(instance.image, 'url'):
+            representation['image'] = instance.image.url
+        return representation
+
 
 
 class NewsSerializer(serializers.ModelSerializer):
     class Meta:
         model = News
         fields = '__all__'
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        if hasattr(instance, 'image') and instance.image and hasattr(instance.image, 'url'):
+            representation['image'] = instance.image.url
+        return representation
