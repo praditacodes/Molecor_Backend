@@ -10,3 +10,4 @@ Pillow==11.2.1
 cloudinary
 django-cloudinary-storage
 django-storages
+python-dotenv
